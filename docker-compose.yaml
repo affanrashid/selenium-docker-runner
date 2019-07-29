@@ -44,5 +44,5 @@ services:
       #test-output folder is created automatically when the suite runs. and we are using a seperate directory on our host and mapping it to the same test-output folder
 
       #we can keep on adding more modules if we want to test on different browsers
-      -
+      
       
