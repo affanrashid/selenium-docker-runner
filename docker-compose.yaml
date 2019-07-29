@@ -27,7 +27,7 @@ services:
       - HUB_HOST=hub
       - MODULE=search-module.xml
     volumes:
-      - ./search-result:/usr/share/udemy/test-output
+      - ./output/search-result:/usr/share/udemy/test-output
   book-flight-module:
     image: affanr/selenium-docker
     depends_on:
@@ -38,7 +38,7 @@ services:
       - HUB_HOST=hub
       - MODULE=book-flight-module.xml
     volumes:
-      - /book-result:/usr/share/udemy/test-output 
+      - ./output/book-result:/usr/share/udemy/test-output 
       
       #/usr/share/udemy is the working directory we defined in the Dockerfile that we used to build the image. and we know that the 
       #test-output folder is created automatically when the suite runs. and we are using a seperate directory on our host and mapping it to the same test-output folder
