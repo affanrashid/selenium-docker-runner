@@ -21,7 +21,7 @@ pipeline{
 		always{
 			archiveArtifacts artifacts: 'output/**'
 			bat "docker-compose down"
-			bat "rmdir /s /q %WORKSPACE%/output"
+			bat "rmdir /s /q %WORKSPACE%\\output"
 		}
 	}
 }
