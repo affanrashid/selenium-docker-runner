@@ -8,7 +8,7 @@ pipeline{
 		}
 		stage("Start Grid"){
 			steps{
-				bat "docker-compose up -d hub chrome firefox"
+				bat "docker-compose up -d hub chrome firefox" //This command tells docker to start the hub, chrome, and firefox servicec only. -d says to start them in the back ground. Removing -d will put the jenkins job in an endless loop since the selenium grid will keep on running and listening.
 			}
 		}
 		stage("Run Test"){
@@ -21,7 +21,7 @@ pipeline{
 		always{
 			archiveArtifacts artifacts: 'output/**'
 			bat "docker-compose down"
-			bat "rm -rf output/"
+			bat "rmdir /s /q %WORKSPACE%\\output"
 		}
 	}
 }
