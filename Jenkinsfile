@@ -6,17 +6,23 @@ pipeline{
 				bat "docker pull affanr/selenium-docker"
 			}
 		}
+		//Here we run the grid seperately
+		//using the -d command we run it in the background
+		//And only select the Hub, Chrome, and Firefox images to run from the docker-compose file		
 		stage("Start Grid"){
 			steps{
-				bat "docker-compose up -d hub chrome firefox" //This command tells docker to start the hub, chrome, and firefox servicec only. -d says to start them in the back ground. Removing -d will put the jenkins job in an endless loop since the selenium grid will keep on running and listening.
+				bat "docker-compose up -d hub chrome firefox" 
 			}
 		}
+		//We then run the test images seperately 
 		stage("Run Test"){
 			steps{
 				bat "docker-compose up search-module"
 			}
 		}
 	}
+	//This post command always runs even if we kill the job.
+	//Here we are saying to archive the test results in the slaves workspace directory
 	post{
 		always{
 			archiveArtifacts artifacts: 'output/**'
