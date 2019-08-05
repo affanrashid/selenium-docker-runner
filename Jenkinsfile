@@ -1,6 +1,7 @@
 pipeline{
 	agent any
-	stages{
+	stages{//here we are pulling the latest image from the repo
+	//otherwise if you don't pull, docker will always use the local image it had pulled initially for all the tests
 		stage("Pull Latest Image"){
 			steps{
 				bat "docker pull affanr/selenium-docker"
