@@ -25,8 +25,8 @@ pipeline{
 	//Here we are saying to archive the test results in the slaves workspace directory
 	post{
 		always{
-			archiveArtifacts artifacts: 'output/**'
-			bat "docker-compose down"
+			archiveArtifacts artifacts: 'output/**' //archive everything under output folder
+			bat "docker-compose down" //we put the down command here so even if we kill the job the grid will be brought down successfully
 			bat "rmdir /s /q %WORKSPACE%\\output"
 		}
 	}
